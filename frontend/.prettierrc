@@ -1,0 +1,17 @@
+{
+  "doubleQuote": true,
+  "trailingComma": "all",
+  "tabWidth": 4,
+  "printWidth": 110,
+  "quoteProps": "consistent",
+  "overrides": [
+    {
+      "files": "*.yml",
+      "options": {
+        "tadWidth": 2,
+        "printWidth": 40,
+        "doubleQuote": true
+      }
+    }
+  ]
+}

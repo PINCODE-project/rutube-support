@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  rutube_server:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "5030:5000"
+    networks:
+      - rutube_network
+
+  rutube_frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3200:3001"
+    networks:
+      - rutube_network
+
+  rutube_bot:
+    build:
+      context: ./bot
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - rutube_network
+
+networks:
+  rutube_network:
+    driver: bridge

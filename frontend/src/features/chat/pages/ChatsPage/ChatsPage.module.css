@@ -1,0 +1,10 @@
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.title {
+    font-family: var(--main-font), serif;
+}
+
+

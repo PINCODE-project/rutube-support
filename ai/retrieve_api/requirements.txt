@@ -1,0 +1,8 @@
+langchain-community
+langchain
+fastapi
+uvicorn
+qdrant-client
+transformers
+werkzeug
+torch

@@ -1,0 +1,16 @@
+.container {
+    max-width: 1300px;
+    margin: auto;
+}
+
+.title {
+    font-family: var(--main-font), serif;
+}
+
+.wordCloudContainer {
+    height: 500px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

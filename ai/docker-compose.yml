@@ -1,0 +1,66 @@
+version: '3.8'
+
+
+services:
+  qdrantrag:
+    image: qdrant/qdrant
+    container_name: qdrantrag
+    restart: always
+    ports:
+      - "6335:6333"
+      - "6336:6334"
+    volumes:
+      - /home/github/qdrant:/qdrant/storage
+    networks:
+      - rutube_network
+
+  retrieve_api:
+    container_name: retrieve_api
+    build:
+      context: ./retrieve_api
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "5021:5021"
+    depends_on:
+      - qdrantrag
+    networks:
+      - rutube_network
+
+  ai_api:
+    container_name: ai_api
+    build:
+      context: ./ai_api
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "5022:5022"
+    depends_on:
+      - qdrantrag
+    networks:
+      - rutube_network
+
+  classifier_api:
+    container_name: classifier_api
+    build:
+      context: ./classifier_api
+      dockerfile: Dockerfile_gpu
+    restart: always
+    ports:
+      - "5023:5023"
+    networks:
+      - rutube_network
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+
+networks:
+  rutube_network:
+    driver: bridge
+
+volumes:
+  qdrant_data2:

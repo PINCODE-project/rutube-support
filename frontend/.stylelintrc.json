@@ -1,0 +1,15 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "selector-class-pattern": "^[A-Z][a-zA-Z0-9_-]+$",
+    "keyframes-name-pattern": "^[a-zA-Z]+$",
+    "value-keyword-case": [
+      "lower",
+      {
+        "ignoreKeywords": [
+          "Inter"
+        ]
+      }
+    ]
+  }
+}

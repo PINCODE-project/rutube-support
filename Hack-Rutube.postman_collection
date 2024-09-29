@@ -1,0 +1,853 @@
+{
+	"info": {
+		"_postman_id": "8f271836-b08d-4f66-bd0f-76f7ae4f855d",
+		"name": "Rutube",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24142005",
+		"_collection_link": "https://cloudy-satellite-623973.postman.co/workspace/Team-Workspace~83e7b6a0-64f5-450b-8a39-9367de604c4c/collection/24142005-8f271836-b08d-4f66-bd0f-76f7ae4f855d?action=share&source=collection_link&creator=24142005"
+	},
+	"item": [
+		{
+			"name": "AI-API",
+			"item": [
+				{
+					"name": "Получение ответа на обращение с использованием контекста",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"question\": \"Таймкод что это и куда\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/{{AI_PATH}}get_answer_by_context",
+						"description": "**Метод получения ответа на обращение с использованием контекста**\n\n1. Получаем классы из Classifier-API\n    \n2. По вопросу получаем 2 ближайших вектора с данными \"вопрос-ответ\", из соответствующей коллекции векторной базы данных, относящейся к class_1\n    \n3. По вопросу получаем 2 ближайших вектора с данными \"вопрос-ответ\", из общей коллекции 'all'\n    \n4. Формируем промпт в LLM-API, отправляем запрос\n    \n5. Получаем ответ из LLM, формируем ответ - answer из LLM-API, class_1 и class_2 из Classifier-API"
+					},
+					"response": [
+						{
+							"name": "Получение ответа на обращение с использованием контекста",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"question\": \"А с телефона можно стримить на рутуб?\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://hack-rutube.pincode-dev.ru/ai-api/get_answer_by_context"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.24.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 28 Sep 2024 01:41:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "8485"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"answer\": \"Здравствуйте! Спасибо за обращение в нашу техническую поддержку. \\n\\nК сожалению, по информации, предоставленной в наших базах знаний, стримить на RUTUBE с телефона нельзя. Для ведения трансляций на RUTUBE вам потребуется ноутбук или компьютер с отдельной веб-камерой.\",\n    \"class_1\": \"ТРАНСЛЯЦИЯ\",\n    \"class_2\": \"Управление трансляцией\",\n    \"context\": [\n        {\n            \"answer\": \"Проведение трансляций доступно для всех зарегистрированных пользователей с подтвержденным номером телефона (в данный момент только номера мобильных операторов РФ).\",\n            \"data\": \"Кому доступно проведение трансляций (стримов) на RUTUBE?\",\n            \"topic_name\": \"Управление трансляцией\"\n        },\n        {\n            \"answer\": \"Да, можно.\",\n            \"data\": \"Можно ли запускать приватные трансляции на RUTUBE?\",\n            \"topic_name\": \"Управление трансляцией\"\n        },\n        {\n            \"answer\": \"Нет ограничений. Рекомендуются бесплатные ПО OBS Studio (https://obsproject.com/ru) и VMix (https://www.vmix.com/).\",\n            \"data\": \"С помощью каких программ допускается вести трансляции на RUTUBE?\",\n            \"topic_name\": \"Управление трансляцией\"\n        },\n        {\n            \"answer\": \"Любой пользователь RUTUBE может не только загружать готовые видеоролики и подкасты, но и вести трансляции в режиме реального времени или «стримить» видео. Для выхода в прямой эфир вам потребуется ноутбук или компьютер с отдельной веб-камерой. На RUTUBE все трансляции собраны в одном разделе. Здесь можно найти как авторские стримы, так и прямые эфиры популярных телеканалов.\",\n            \"data\": \"Что такое трансляции (стримы) на RUTUBE?\",\n            \"topic_name\": \"Управление трансляцией\"\n        },\n        {\n            \"answer\": \"Любой пользователь RUTUBE может вести трансляции в режиме реального времени или «стримить» видео. Для этого потребуется ноутбук или компьютер с веб-камерой. Трансляции появляются на личной странице стримера и в разделе всех трансляций на сайте RUTUBE (https://rutube.ru/feeds/stream/), где можно найти как авторские стримы, так и прямые эфиры телеканалов.\",\n            \"data\": \"Что такое трансляции (стримы) на RUTUBE?\",\n            \"topic_name\": \"Управление трансляцией\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Загрузка excel в Retrieve API",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "Файл с данными",
+									"type": "file",
+									"src": "/C:/Users/Роман/Downloads/rag/real.xlsx"
+								},
+								{
+									"key": "question_type",
+									"value": "Вопрос пользователя",
+									"description": "Тип вопросы из эксель",
+									"type": "text"
+								},
+								{
+									"key": "answer_type",
+									"value": "Ответ сотрудника",
+									"description": "Тип ответа из эксель",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{HOST}}/{{AI_PATH}}add_excel",
+						"description": "**Метод загрузки excel в векторую базу данных на Retrieve API**\n\n- Таблица должна иметь минимум следующие названия колонок: \"Классификатор 1 уровня\", \"Классификатор 2 уровня\"\n    \n- Дополнительно в таблице должны быть 2 столбца, соответствующих вопросам и ответам\n    \n\nВ векторную БД запишутся все записи из таблицы по следующим правилам:\n\n1. \"Классификатор 1 уровня\" - название коллекции в БД\n    \n2. \"Классификатор 2 уровня\" - метаданные, topic_name\n    \n3. question_type (вопросы пользователей) - преобразуется в вектор, далее по ним будет происходить поиск\n    \n4. answer_type (ответы сотрудников) - метаданные, answer, будет использоваться для формирования промпта\n    \n\n- Дополнительно все записи попадут в коллекцию \"all\""
+					},
+					"response": [
+						{
+							"name": "Загрузка excel в Retrieve API",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"description": "Файл с данными",
+											"type": "file",
+											"src": "/C:/Users/Роман/Downloads/rag/real.xlsx"
+										},
+										{
+											"key": "question_type",
+											"value": "Вопрос пользователя",
+											"description": "Тип вопросы из эксель",
+											"type": "text"
+										},
+										{
+											"key": "answer_type",
+											"value": "Ответ сотрудника",
+											"description": "Тип ответа из эксель",
+											"type": "text"
+										}
+									]
+								},
+								"url": "https://hack-rutube.pincode-dev.ru/ai-api/add_excel"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 29 Sep 2024 00:34:57 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Documents added successfully\"\n}"
+						}
+					]
+				}
+			],
+			"description": "API для формирования промптов в LLM, отправку запросов в неё и выдачу ответов."
+		},
+		{
+			"name": "Retrieve-API",
+			"item": [
+				{
+					"name": "Получение ближайших эмбедингов",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"question\": \"А с телефона можно стримить на рутуб?\",\r\n    \"collection_name\": \"ТРАНСЛЯЦИЯ\",\r\n    \"top_k\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/{{RETRIEVE_PATH}}get_retrieve",
+						"description": "Метод для получения ближайших эмбедингов по выбранной коллекции векторной базы данных.\n\nquestion - вопрос пользователя  \ncollection_name - наименование коллекции, в данном решении принимается любая коллекция из списка \\[\"all\", \"УПРАВЛЕНИЕ АККАУНТОМ\", \"ВИДЕО\", \"ТРАНСЛЯЦИЯ\", \"ПОИСК\", \"ПРЕДЛОЖЕНИЯ\", \"ОТСУТСТВУЕТ\", \"МОДЕРАЦИЯ\", \"МОНЕТИЗАЦИЯ\", \"БЛАГОТВОРИТЕЛЬНОСТЬ ДОНАТЫ\", \"СОТРУДНИЧЕСТВО ПРОДВИЖЕНИЕ РЕКЛАМА\", \"СПАМ\", \"МОШЕННИЧЕСТВО\", \"ДОСТУП К RUTUBE\"\\]\n\ntop_k - количество ближайших записей\n\nВ ответ приходит вся информация по записям - anwer (ответ из датасета), data (вопрос из датасета, по нему происходит поиск) и topic_name (class2 из датасета)"
+					},
+					"response": [
+						{
+							"name": "Получение ближайших эмбедингов",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"question\": \"Что необходимо сделать для включения флага Счета учёта указываются вручную?\",\r\n    \"collection_name\": \"ТРАНСЛЯЦИЯ\",\r\n    \"top_k\": 5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://hack-rutube.pincode-dev.ru/retrieve-api/get_retrieve"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.24.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 28 Sep 2024 01:24:36 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "10897"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"near\": [\n        {\n            \"answer\": \"Создайте трансляцию как обычно через Студию: https://rutube.ru/create-stream/ или по кнопке в правом верхнем углу сайта.\\n\\nВведите название трансляции, выберите тему и нажмите кнопку далее.\\n\\nВ открывшейся странице запуска трансляции пока не нажимайте кнопку «Запустить трансляцию».\\n\\nНе закрывая вкладку создания трансляции, необходимо открыть в новой вкладке раздел «Видео» в Студии: https://studio.rutube.ru/videos, далее кликните на появившуюся там созданную трансляцию.\\n\\nВ настройках «Ролика» (стрима) измените значение параметра доступа с «Открытый доступ» на «Доступ по прямой ссылке» и нажмите сохранить.\\n\\nТеперь необходимо перейти в OBS (или любая другая программа для ведения эфиров), возвращайтесь во вкладку со страницей трансляции и запускайте ее.\\n\\nДалее можете разослать ссылку на трансляцию вашим зрителям. \",\n            \"data\": \"Как запустить приватную трансляцию?\",\n            \"topic_name\": \"Управление трансляцией\"\n        },\n        {\n            \"answer\": \"Создайте трансляцию через Студию (https://rutube.ru/create-stream/) или кнопку на сайте, введите название и тему, затем измените параметры доступа с «Открытый доступ» на «Доступ по прямой ссылке» в Студии (https://studio.rutube.ru/videos). После этого запустите трансляцию и разошлите ссылку зрителям.\",\n            \"data\": \"Как запустить приватную трансляцию?\",\n            \"topic_name\": \"Управление трансляцией\"\n        },\n        {\n            \"answer\": \"Введите ваш номер телефона в соответствующее поле на первой странице раздела запуска трансляции: https://rutube.ru/create-stream/. В ответ на ваш запрос на указанный номер поступит звонок. Запомните последние 4 цифры номера телефона, с которого поступил звонок, и сбросьте его. Эти цифры необходимо будет ввести в соответствующее поле.\",\n            \"data\": \"Как проходит подтверждение номера телефона?\",\n            \"topic_name\": \"Управление трансляцией\"\n        },\n        {\n            \"answer\": \"Заголовок трансляции дает зрителям дополнительную информацию о ее содержании. Рекомендуем вам придумать информативный и яркий заголовок, который, с одной стороны, будет раскрывать тему стрима, с другой — привлечет внимание пользователей RUTUBE и тем самым расширит вашу аудиторию. В описании вы можете указать дополнительную информацию и дать какие-либо ссылки.\",\n            \"data\": \"Зачем нужен заголовок и описание для прямого эфира?\",\n            \"topic_name\": \"Управление трансляцией\"\n        },\n        {\n            \"answer\": \"При создании трансляции можно отметить опцию «18+».\",\n            \"data\": \"Как присвоить трансляции (стриму) категорию 18+?\",\n            \"topic_name\": \"Управление трансляцией\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Добавление новых эмбедингов",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"documents\": [\r\n        {\r\n            \"collection_name\": \"МОНЕТИЗАЦИЯ\",\r\n            \"data\": \"Если коменты и просмотрынакрученны, рутуб с таким явлением что-то делает?\",\r\n            \"answer\": \"Алгоритмы платформы очень внимательно следят за статистикой и понимают, когда показатели завышены искусственно. Это нарушает п. 2.3.17 оферты: https://rutube.ru/info/adv_oferta/ и п. 1.33 приложения № 1 к оферте: https://rutube.ru/info/adv_oferta_glossary/, в таком случае монетизация отключается.\",\r\n            \"topic_name\": \"Отключение/подключение монетизации\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/{{RETRIEVE_PATH}}add_documents",
+						"description": "Метод для добавления записей в векторуюб БД\n\nНа вход массив документов со следующими параметрами:\n\n- collection_name - название коллекции\n    \n- data - вопрос из датасета, по нему будет происходить поиск\n    \n- answer - ответ из датасета, будет использоваться для формирования промпта\n    \n- topic_name - class_2 из датасета"
+					},
+					"response": [
+						{
+							"name": "Добавление новых эмбедингов",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"documents\": [\r\n        {\r\n            \"collection_name\": \"МОНЕТИЗАЦИЯ\",\r\n            \"data\": \"Если коменты и просмотрынакрученны, рутуб с таким явлением что-то делает?\",\r\n            \"answer\": \"Алгоритмы платформы очень внимательно следят за статистикой и понимают, когда показатели завышены искусственно. Это нарушает п. 2.3.17 оферты: https://rutube.ru/info/adv_oferta/ и п. 1.33 приложения № 1 к оферте: https://rutube.ru/info/adv_oferta_glossary/, в таком случае монетизация отключается.\",\r\n            \"topic_name\": \"Отключение/подключение монетизации\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://hack-rutube.pincode-dev.ru/retrieve-api/add_documents"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.24.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 28 Sep 2024 01:29:47 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Documents added successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Создание коллекций",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"collections\": [\r\n        \"all\",\r\n        \"УПРАВЛЕНИЕ АККАУНТОМ\",\r\n        \"ВИДЕО\",\r\n        \"ТРАНСЛЯЦИЯ\",\r\n        \"ПОИСК\",\r\n        \"ПРЕДЛОЖЕНИЯ\",\r\n        \"ОТСУТСТВУЕТ\",\r\n        \"МОДЕРАЦИЯ\",\r\n        \"МОНЕТИЗАЦИЯ\",\r\n        \"БЛАГОТВОРИТЕЛЬНОСТЬ ДОНАТЫ\",\r\n        \"СОТРУДНИЧЕСТВО ПРОДВИЖЕНИЕ РЕКЛАМА\",\r\n        \"СПАМ\",\r\n        \"МОШЕННИЧЕСТВО\",\r\n        \"ДОСТУП К RUTUBE\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/{{RETRIEVE_PATH}}add_collections",
+						"description": "Метод для создания коллекций в векторной базе данных.\n\nПолезно при иниализации микросервиса или при добавлении нового class_1\n\nНа вход принимает массив названий коллекций, которые необходимо создать.\n\n- Проверяем, не создана ли сейчас коллекция с таким названием, если создана - пропускаем и записываем в массив not_added ответа\n    \n- Если коллекция с таким названием не создана - создаем и записываем в массив added ответа"
+					},
+					"response": [
+						{
+							"name": "Создание коллекций",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"collections\": [\r\n        \"УПРАВЛЕНИЕ АККАУНТОМ\",\r\n        \"ВИДЕО\",\r\n        \"ТРАНСЛЯЦИЯ\",\r\n        \"ПОИСК\",\r\n        \"ПРЕДЛОЖЕНИЯ\",\r\n        \"ОТСУТСТВУЕТ\",\r\n        \"МОДЕРАЦИЯ\",\r\n        \"МОНЕТИЗАЦИЯ\",\r\n        \"БЛАГОТВОРИТЕЛЬНОСТЬ ДОНАТЫ\",\r\n        \"СОТРУДНИЧЕСТВО ПРОДВИЖЕНИЕ РЕКЛАМА\",\r\n        \"СПАМ\",\r\n        \"МОШЕННИЧЕСТВО\",\r\n        \"ДОСТУП К RUTUBE\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://hack-rutube.pincode-dev.ru/retrieve-api/add_collections"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.24.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 28 Sep 2024 01:23:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1050"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"added\": [],\n    \"not_added\": [\n        \"УПРАВЛЕНИЕ АККАУНТОМ\",\n        \"ВИДЕО\",\n        \"ТРАНСЛЯЦИЯ\",\n        \"ПОИСК\",\n        \"ПРЕДЛОЖЕНИЯ\",\n        \"ОТСУТСТВУЕТ\",\n        \"МОДЕРАЦИЯ\",\n        \"МОНЕТИЗАЦИЯ\",\n        \"БЛАГОТВОРИТЕЛЬНОСТЬ ДОНАТЫ\",\n        \"СОТРУДНИЧЕСТВО ПРОДВИЖЕНИЕ РЕКЛАМА\",\n        \"СПАМ\",\n        \"МОШЕННИЧЕСТВО\",\n        \"ДОСТУП К RUTUBE\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Получение всех коллекций",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{HOST}}/{{RETRIEVE_PATH}}get_collections"
+					},
+					"response": [
+						{
+							"name": "Добавление новых эмбедингов Copy",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "https://hack-rutube.pincode-dev.ru/retrieve-api/get_collections"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.24.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 28 Sep 2024 01:31:30 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1025"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    \"ОТСУТСТВУЕТ\",\n    \"МОШЕННИЧЕСТВО\",\n    \"МОНЕТИЗАЦИЯ\",\n    \"ТРАНСЛЯЦИЯ\",\n    \"БЛАГОТВОРИТЕЛЬНОСТЬ ДОНАТЫ\",\n    \"ПОИСК\",\n    \"СПАМ\",\n    \"ДОСТУП К RUTUBE\",\n    \"УПРАВЛЕНИЕ АККАУНТОМ\",\n    \"ВИДЕО\",\n    \"МОДЕРАЦИЯ\",\n    \"СОТРУДНИЧЕСТВО ПРОДВИЖЕНИЕ РЕКЛАМА\",\n    \"ПРЕДЛОЖЕНИЯ\"\n]"
+						}
+					]
+				}
+			],
+			"description": "API для работы с эмбедингами и векторной базой данных."
+		},
+		{
+			"name": "LLM-API",
+			"item": [
+				{
+					"name": "Запрос в LLM",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": [\r\n        {\r\n            \"role\": \"user\",\r\n            \"content\": \"Привет, как дела?\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/{{LLM_PATH}}chat",
+						"description": "Метод для запроса в LLM\n\nПередать массив сообщений.  \nrole - роль из списка \\[user, system, assistant\\]  \ncontent - текст сообщения"
+					},
+					"response": [
+						{
+							"name": "Запрос в LLM",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"messages\": [\r\n        {\r\n            \"role\": \"user\",\r\n            \"content\": \"Привет, как дела?\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://5.39.220.103:5009/ask"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.0.3 Python/3.10.12"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 28 Sep 2024 01:25:57 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "802"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"response\": \"Привет! Я искусственный интеллект, поэтому у меня нет чувств и эмоций, но я готов помочь вам с любыми вопросами или задачами. Как я могу вам помочь сегодня?\"\n}"
+						}
+					]
+				}
+			],
+			"description": "API для работы с LLM"
+		},
+		{
+			"name": "Classifier-API",
+			"item": [
+				{
+					"name": "Получение классов",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"А с телефона можно стримить на рутуб?\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/{{CLASSIFIER_PATH}}predict",
+						"description": "Метод для получения class_1 и class_2 вопроса"
+					},
+					"response": [
+						{
+							"name": "Получение классов",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"text\": \"А с телефона можно стримить на рутуб?\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://hack-rutube.pincode-dev.ru/classifier-api/predict"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.24.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 28 Sep 2024 01:25:34 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "90"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"class_1\": \"ТРАНСЛЯЦИЯ\",\n    \"class_2\": \"Управление трансляцией\"\n}"
+						}
+					]
+				}
+			],
+			"description": "API для запросов в Classifier"
+		},
+		{
+			"name": "Нагрузочное тестирование",
+			"item": [
+				{
+					"name": "[НТ] Получение ответа на обращение с использованием контекста",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"question\": \"{{question}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/{{AI_PATH}}get_answer_by_context"
+					},
+					"response": [
+						{
+							"name": "Получение ответа на обращение с использованием контекста",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"question\": \"А с телефона можно стримить на рутуб?\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://hack-rutube.pincode-dev.ru/ai-api/get_answer_by_context"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.24.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 28 Sep 2024 01:41:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "8485"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"answer\": \"Здравствуйте! Спасибо за обращение в нашу техническую поддержку. \\n\\nК сожалению, по информации, предоставленной в наших базах знаний, стримить на RUTUBE с телефона нельзя. Для ведения трансляций на RUTUBE вам потребуется ноутбук или компьютер с отдельной веб-камерой.\",\n    \"class_1\": \"ТРАНСЛЯЦИЯ\",\n    \"class_2\": \"Управление трансляцией\",\n    \"context\": [\n        {\n            \"answer\": \"Проведение трансляций доступно для всех зарегистрированных пользователей с подтвержденным номером телефона (в данный момент только номера мобильных операторов РФ).\",\n            \"data\": \"Кому доступно проведение трансляций (стримов) на RUTUBE?\",\n            \"topic_name\": \"Управление трансляцией\"\n        },\n        {\n            \"answer\": \"Да, можно.\",\n            \"data\": \"Можно ли запускать приватные трансляции на RUTUBE?\",\n            \"topic_name\": \"Управление трансляцией\"\n        },\n        {\n            \"answer\": \"Нет ограничений. Рекомендуются бесплатные ПО OBS Studio (https://obsproject.com/ru) и VMix (https://www.vmix.com/).\",\n            \"data\": \"С помощью каких программ допускается вести трансляции на RUTUBE?\",\n            \"topic_name\": \"Управление трансляцией\"\n        },\n        {\n            \"answer\": \"Любой пользователь RUTUBE может не только загружать готовые видеоролики и подкасты, но и вести трансляции в режиме реального времени или «стримить» видео. Для выхода в прямой эфир вам потребуется ноутбук или компьютер с отдельной веб-камерой. На RUTUBE все трансляции собраны в одном разделе. Здесь можно найти как авторские стримы, так и прямые эфиры популярных телеканалов.\",\n            \"data\": \"Что такое трансляции (стримы) на RUTUBE?\",\n            \"topic_name\": \"Управление трансляцией\"\n        },\n        {\n            \"answer\": \"Любой пользователь RUTUBE может вести трансляции в режиме реального времени или «стримить» видео. Для этого потребуется ноутбук или компьютер с веб-камерой. Трансляции появляются на личной странице стримера и в разделе всех трансляций на сайте RUTUBE (https://rutube.ru/feeds/stream/), где можно найти как авторские стримы, так и прямые эфиры телеканалов.\",\n            \"data\": \"Что такое трансляции (стримы) на RUTUBE?\",\n            \"topic_name\": \"Управление трансляцией\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "[НТ] Получение классов",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Предположим, что ответ приходит в формате JSON\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"// Сохраняем значение из ответа в переменную\r",
+									"pm.collectionVariables.set(\"class_1\", jsonData.class_1); // Замените \"key\" на реальный ключ, который вам нужен"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"{{question}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/{{CLASSIFIER_PATH}}predict"
+					},
+					"response": [
+						{
+							"name": "Получение классов",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"text\": \"А с телефона можно стримить на рутуб?\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://hack-rutube.pincode-dev.ru/classifier-api/predict"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.24.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 28 Sep 2024 01:25:34 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "90"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"class_1\": \"ТРАНСЛЯЦИЯ\",\n    \"class_2\": \"Управление трансляцией\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[НТ] Получение ближайших эмбедингов",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"question\": \"{{question}}\",\r\n    \"collection_name\": \"{{class_1}}\",\r\n    \"top_k\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/{{RETRIEVE_PATH}}get_retrieve"
+					},
+					"response": [
+						{
+							"name": "Получение ближайших эмбедингов",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"question\": \"Что необходимо сделать для включения флага Счета учёта указываются вручную?\",\r\n    \"collection_name\": \"ТРАНСЛЯЦИЯ\",\r\n    \"top_k\": 5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://hack-rutube.pincode-dev.ru/retrieve-api/get_retrieve"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.24.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 28 Sep 2024 01:24:36 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "10897"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"near\": [\n        {\n            \"answer\": \"Создайте трансляцию как обычно через Студию: https://rutube.ru/create-stream/ или по кнопке в правом верхнем углу сайта.\\n\\nВведите название трансляции, выберите тему и нажмите кнопку далее.\\n\\nВ открывшейся странице запуска трансляции пока не нажимайте кнопку «Запустить трансляцию».\\n\\nНе закрывая вкладку создания трансляции, необходимо открыть в новой вкладке раздел «Видео» в Студии: https://studio.rutube.ru/videos, далее кликните на появившуюся там созданную трансляцию.\\n\\nВ настройках «Ролика» (стрима) измените значение параметра доступа с «Открытый доступ» на «Доступ по прямой ссылке» и нажмите сохранить.\\n\\nТеперь необходимо перейти в OBS (или любая другая программа для ведения эфиров), возвращайтесь во вкладку со страницей трансляции и запускайте ее.\\n\\nДалее можете разослать ссылку на трансляцию вашим зрителям. \",\n            \"data\": \"Как запустить приватную трансляцию?\",\n            \"topic_name\": \"Управление трансляцией\"\n        },\n        {\n            \"answer\": \"Создайте трансляцию через Студию (https://rutube.ru/create-stream/) или кнопку на сайте, введите название и тему, затем измените параметры доступа с «Открытый доступ» на «Доступ по прямой ссылке» в Студии (https://studio.rutube.ru/videos). После этого запустите трансляцию и разошлите ссылку зрителям.\",\n            \"data\": \"Как запустить приватную трансляцию?\",\n            \"topic_name\": \"Управление трансляцией\"\n        },\n        {\n            \"answer\": \"Введите ваш номер телефона в соответствующее поле на первой странице раздела запуска трансляции: https://rutube.ru/create-stream/. В ответ на ваш запрос на указанный номер поступит звонок. Запомните последние 4 цифры номера телефона, с которого поступил звонок, и сбросьте его. Эти цифры необходимо будет ввести в соответствующее поле.\",\n            \"data\": \"Как проходит подтверждение номера телефона?\",\n            \"topic_name\": \"Управление трансляцией\"\n        },\n        {\n            \"answer\": \"Заголовок трансляции дает зрителям дополнительную информацию о ее содержании. Рекомендуем вам придумать информативный и яркий заголовок, который, с одной стороны, будет раскрывать тему стрима, с другой — привлечет внимание пользователей RUTUBE и тем самым расширит вашу аудиторию. В описании вы можете указать дополнительную информацию и дать какие-либо ссылки.\",\n            \"data\": \"Зачем нужен заголовок и описание для прямого эфира?\",\n            \"topic_name\": \"Управление трансляцией\"\n        },\n        {\n            \"answer\": \"При создании трансляции можно отметить опцию «18+».\",\n            \"data\": \"Как присвоить трансляции (стриму) категорию 18+?\",\n            \"topic_name\": \"Управление трансляцией\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"description": "Папка с рестами для нагрузочного тестирования"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "HOST",
+			"value": "https://hack-rutube.pincode-dev.ru",
+			"type": "string"
+		},
+		{
+			"key": "RETRIEVE_PATH",
+			"value": "retrieve-api/",
+			"type": "string"
+		},
+		{
+			"key": "AI_PATH",
+			"value": "ai-api/",
+			"type": "string"
+		},
+		{
+			"key": "LLM_PATH",
+			"value": "llm-api/",
+			"type": "string"
+		},
+		{
+			"key": "CLASSIFIER_PATH",
+			"value": "classifier-api/",
+			"type": "string"
+		},
+		{
+			"key": "question",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "class_1",
+			"value": ""
+		}
+	]
+}

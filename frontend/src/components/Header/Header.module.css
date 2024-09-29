@@ -1,0 +1,20 @@
+.header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+}
+
+.logoContainer {
+    justify-self: start;
+}
+
+.navbarContainer {
+    justify-self: center;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.profileContainer {
+    justify-self: end;
+}

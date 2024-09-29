@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  langchain_api:
+    container_name: langchain_api
+    build:
+      context: .
+      dockerfile: Dockerfile_gpu
+    restart: always
+    environment:
+      MODEL_PATH: 'Phi-3-medium-128k-instruct-Q6_K_L.gguf'
+      N_CTX: 6000
+      N_PARTS: -1
+      N_THREADS: None
+      N_GPU_LAYERS: -1
+      N_BATCH: 4500
+      TOP_K: 35
+      TOP_P: 0.9
+      TEMPERATURE: 0.35
+      REPEAT_PENALTY: 1.1
+      MAX_TOKENS: 1500
+    ports:
+      - "5015:5015"
+    networks:
+      - langchain_network
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+
+networks:
+  langchain_network:
+    driver: bridge

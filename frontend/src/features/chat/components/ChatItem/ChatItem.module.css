@@ -1,0 +1,21 @@
+.date {
+    color: var(--mantine-color-dark-3) !important;
+}
+
+.textbox {
+    white-space: pre-line;
+}
+
+.answer {
+    white-space: pre-line;
+    padding: 10px 27px 10px 10px !important;
+    background-color: var(--mantine-color-dark-5);
+    border-radius: var(--mantine-radius-md);
+    position: relative !important;
+}
+
+.copyButton {
+    position: absolute !important;
+    top: 0;
+    right: 0;
+}

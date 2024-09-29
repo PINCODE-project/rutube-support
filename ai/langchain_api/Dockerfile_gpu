@@ -1,0 +1,35 @@
+# Используем официальный базовый образ Python с поддержкой CUDA
+FROM nvidia/cuda:11.7.1-devel-ubuntu22.04
+
+# Устанавливаем рабочую директорию в контейнере
+WORKDIR /app
+
+# Устанавливаем Python и pip
+RUN apt-get update && apt-get install -y python3 python3-pip
+
+# Устанавливаем переменные окружения
+ENV FORCE_CMAKE="1"
+ENV CMAKE_ARGS="-DGGML_CUDA=1"
+
+# Копируем файл зависимостей перед копированием кода, чтобы кешировать этот шаг
+COPY requirements.txt /app/requirements.txt
+
+# Устанавливаем Python-зависимости
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install -r requirements.txt --no-cache-dir
+
+# Устанавливаем langchain (если его нужно обновить)
+RUN pip install --upgrade langchain
+
+COPY Phi-3-medium-128k-instruct-Q6_K_L.gguf /app/Phi-3-medium-128k-instruct-Q6_K_L.gguf
+
+# Копируем остальные файлы в контейнер
+COPY langchain_server.py /app/langchain_server.py
+COPY models.py /app/models.py
+COPY chains.py /app/chains.py
+
+# Открываем порт для API
+EXPOSE 5015
+
+# Определяем команду для запуска приложения
+CMD ["uvicorn", "langchain_server:app", "--host", "0.0.0.0", "--port", "5015", "--workers", "2"]

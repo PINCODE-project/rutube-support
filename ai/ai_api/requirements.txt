@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+requests
+aiohttp
+uvloop
+pandas
+openpyxl
+werkzeug
+python-multipart

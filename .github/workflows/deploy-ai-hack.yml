@@ -1,0 +1,30 @@
+name: CI/CD Pipeline for Devops rutube-support-AI-api on VM hack
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'ai/ai_api/**'
+      - 'ai/classifier_api/**'
+      - 'ai/retrieve_api/**'
+      - 'ai/docker-compose.yml'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+
+      - name: Deploy to Server using Password
+        run: |
+          sshpass -p "${{ secrets.SSH_PASSWORD_HACK }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME_HACK }}@${{ secrets.SSH_HOST_HACK }} "
+          cd hack/rutube &&
+          git pull &&
+          cd ai &&
+          sudo docker compose up -d  --build
+          "

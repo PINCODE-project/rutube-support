@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  rutube_server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "5030:5000"
+    networks:
+      - rutube_network
+
+networks:
+  rutube_network:
+    driver: bridge
