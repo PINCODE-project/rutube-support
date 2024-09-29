@@ -71,7 +71,7 @@ export class ChatService {
     async getLlmAnswer(dto: GetLlmAnswerDto) {
         try {
             const response = await axios.post(
-                "https://rutube.pincode-dev.ru/ai-api/get_answer_by_context",
+                "https://rutube.pincode-dev.ru/ai-api/predict",
                 {
                     question: dto.question,
                 },
